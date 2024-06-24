@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography;
 
+    Console.Clear();
 //Baralho Padrão
 string[] baralho = new string[52];
 for (int i = 0; i < 13; i++)
@@ -37,7 +38,7 @@ Console.ForegroundColor = ConsoleColor.DarkRed;
 Console.BackgroundColor = ConsoleColor.White;
 Console.Write("-----------------Solteirona-----------------");
 Console.ResetColor();
-Console.Write("\n\n\nQuantos BOTs quer adicionar (De 1 a 12)? ");
+Console.Write("\n\n\nQuantos BOTs quer adicionar (De 1 a 11)? ");
 //TryParse
 Qt_Jogadores += Convert.ToInt32(Console.ReadLine());
 if (12 < Qt_Jogadores || Qt_Jogadores < 2)
@@ -45,7 +46,7 @@ if (12 < Qt_Jogadores || Qt_Jogadores < 2)
 int Tam;
 Tam = (51 / Qt_Jogadores) + 10;
 
-string[,] Mao = new string[Qt_Jogadores, Tam + 10];
+string[,] Mao = new string[Qt_Jogadores, 50];
 
 int vez = 0;
 for (int x = 0; x < Tam - 10; x++)
@@ -92,19 +93,47 @@ while (vitoria)
         Mao = MaosNovas(Mao, escolha, Quem, Qt_Jogadores, Prox);
         Mesa = AdicionarMesa(Mesa, Mao, Qt_Jogadores,Quem);
     }
-    Console.ReadKey();
+    Console.ReadKey(true);
+    Vitoria(Mao, Qt_Jogadores);
+}
+
+static void Vitoria(string [,] Mao, int Qt)
+{
+    bool Ganhou = true;
+    for (int x = 0; x <Qt; x++)
+    {
+        for (int y = 0; y < 40; y++)
+        {
+        if(Mao[x,y] != null && Mao[x,y] != "")
+        {
+            Ganhou=false;
+        }
+    }
+    if(Ganhou)
+    {
+        Console.Clear();
+        Console.WriteLine("O jogo acabou");
+        if(x==0)
+        Console.WriteLine("Parabens por ter ganho!!!");
+        else
+        Console.WriteLine("Melhor numa Proxima");
+        Console.ReadKey(true);
+            Environment.Exit(0);
+    }
+    }
+
 }
 
 static string[,] MaosNovas(string[,] Mao, int escolha, int Quem, int Ult, int Prox)
 {
     int TamR = 0;
     int y = 0;
-    Console.WriteLine(Quem + "  " + Prox + "  " + y);
+    // Console.WriteLine(Quem + "  " + Prox + "  " + y);
     if (Quem == 0)
         escolha++;
     for (int x = 0; x < escolha;)
     {
-        Console.WriteLine(x + "  " + Mao[Prox, y] + "  " + y);
+        // Console.WriteLine(x + "  " + Mao[Prox, y] + "  " + y);
         if (Mao[Prox, y] == "" || Mao[Prox, y] == null)
         {
             y++;
@@ -125,7 +154,9 @@ static string[,] MaosNovas(string[,] Mao, int escolha, int Quem, int Ult, int Pr
             x++;
         }
     }
+    if(Quem==0){
     Console.WriteLine("Carta Pega: " + Mao[Prox, y]);
+    Console.ReadKey(true);}
     Mao[Quem, TamR] = Mao[Prox, y];
     Mao[Prox, y] = "";
     return Mao;
@@ -135,7 +166,6 @@ static string[,] MaosNovas(string[,] Mao, int escolha, int Quem, int Ult, int Pr
 
 static int Escolher(int Quem, int Tam, string[,] Mao)
 {
-    int p = 0;
     int escolha = 0;
     int TamR = 1;
     for (int x = 0; x < Tam + 9; x++)
@@ -156,7 +186,6 @@ static int Escolher(int Quem, int Tam, string[,] Mao)
     {
         escolha = RandomNumberGenerator.GetInt32(1, TamR + 1);
     }
-    Console.Write(p);
     return escolha - 1;
 }
 
@@ -219,10 +248,19 @@ string[,] AdicionarMesa(string[,] Mesa, string[,] Mao, int Qt,int Que)
 {
     // Console.WriteLine($"\n\nJogador {y + 1}: \nPares: ");
         int Parte = 0;
-        for (int a = 0; a < Mesa.GetLength(Que); a++)
+        for (int y = 0; y < 1;)
         {
+            if(Mesa[Que,Parte] != null && Mesa[Que,Parte] != "")
+            {
             Parte++;
+            }
+            else
+            {
+                Parte++;
+                y++;
+            }
         }
+        Console.Clear();
     for (int x = 0; x < Tam + 9; x++)
     {
         for (int z = 0; z < Tam + 9; z++)

@@ -6,18 +6,20 @@
 
 # Meu Projeto
 O objetivo do meu programa é divertir as pessoas, o que deu origem a esse programa foi um desafio proposto pelo professor
+<center>
 
-**Fotos do programa em execução:**
+**Fotos do programa em execução:**<br>
+![O jogo](Print.png)
 
+</center>
 
 <hr>
 
 ## Instalação
 1. Tenha o Windows como sistema operacional
-1. Clique no [link](<https://github.com/ermogenes/aulas-programacao-csharp/blob/master/exercises/classes-listas.md#exerc%C3%ADcio-solteirona>) e baixe o programa
-1. Abra o cmd e de dotnet Solteirona.dll ou procure o dll nas pastas e execute.
+1. Clique no [link](<Release.rar>) e baixe o programa
+    1. Abra o cmd e procure o dll nas pastas e de **dotnet 1I3-Solteirona-ProjetoF.dll**.
+    1. Ou Clique no arquivo iniciar.
 
 ###### PS: Não precisa executar como administrar.
-
-dotnet publish -c Release
 
